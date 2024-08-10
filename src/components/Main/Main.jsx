@@ -1,20 +1,20 @@
-import Cards from "../Cards/Cards"
 import Columns from "../Columns/Columns"
+import {statusList} from "../../data/statuses.js";
 
+function Main({ cards }) {
 
-function Main() {
     return (
         <main className="main">
             <div className="container">
                 <div className="main__block">
                     <div className="main__content">
-                        <div className="main__column column">
-                            <div className="column__title">
-                                <p>Без статуса</p>
-                            </div>
-                            <Cards />
-                        </div>
-                        <Columns />
+                        {
+                            statusList.map((item, index) => {
+
+                                const filteredList = cards.filter((card) => card.status === item)
+
+                                return <Columns key={index} title={item} cards={filteredList} />
+                            })}
                     </div>
                 </div>
             </div>
