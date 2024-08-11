@@ -1,4 +1,3 @@
-import CalendarSVG from "../CalendarSVG/CalendarSVG"
 import Cards from "../Cards/Cards.jsx";
 
 function Columns({ title, cards }) {

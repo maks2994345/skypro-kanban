@@ -1,5 +1,3 @@
-import {statusList} from "../../data/statuses.js";
-import Columns from "../Columns/Columns.jsx";
 
 function Loader(){
 
