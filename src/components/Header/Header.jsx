@@ -1,6 +1,5 @@
 import {useState} from "react";
 
-
 function Header({ onCardAdd }) {
 
     const [isOpen, setIsOpen] = useState(false);
