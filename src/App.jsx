@@ -1,15 +1,12 @@
 import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
     const [count, setCount] = useState(0)
 
     return (
-        <body>
+        <>
             <div className="wrapper">
-                <!-- pop-up start-->
 
                 <div className="pop-exit" id="popExit">
                     <div className="pop-exit__container">
@@ -300,7 +297,6 @@ function App() {
                     </div>
                 </div>
 
-                <!-- pop-up end-->
 
                 <header className="header">
                     <div className="container">
@@ -316,7 +312,6 @@ function App() {
                                     новую задачу</a></button>
                                 <a href="#user-set-target" className="header__user _hover02">Ivan Ivanov</a>
                                 <div className="header__pop-user-set pop-user-set" id="user-set-target">
-                                    <!-- <a href="">x</a> -->
                                     <p className="pop-user-set__name">Ivan Ivanov</p>
                                     <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
                                     <div className="pop-user-set__theme">
@@ -847,8 +842,8 @@ function App() {
 
             </div>
 
-            <script src="js/script.js"></script>
-        </body>
+
+        </>
     )
 }
 
