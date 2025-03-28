@@ -1091,3 +1091,8 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+.loader__box{
+  text-align: center;
+  margin-top: 60px;
+}
