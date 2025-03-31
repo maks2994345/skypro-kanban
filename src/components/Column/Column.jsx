@@ -1,12 +1,13 @@
 import Card from "../Card/Card.jsx";
+import {SColumnTitle, SMainColumn} from "./Column.styled.js";
 
 function Column({cards, title}) {
     return (
         <>
-            <div className="main__column column">
-                <div className="column__title">
+            <SMainColumn>
+                <SColumnTitle>
                     <p>{title}</p>
-                </div>
+               </SColumnTitle>
                 <div className="cards">
 
                     {
@@ -17,7 +18,7 @@ function Column({cards, title}) {
 
                 </div>
 
-            </div>
+            </SMainColumn>
         </>
     )
 }
