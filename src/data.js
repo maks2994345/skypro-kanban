@@ -33,7 +33,7 @@ export const cardList = [
 
     {
         id: 5,
-        theme: "Web Design",
+        theme: "Research",
         title: "Название задачи",
         date: "30.10.23",
         status: "Без статуса"
