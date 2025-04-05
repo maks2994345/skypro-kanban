@@ -5,8 +5,9 @@ import Main from "./components/Main/Main.jsx";
 import PopUser from "./components/PopUser/PopUser.jsx";
 import PopNewCard from "./components/PopNewCard/PopNewCard.jsx";
 import PopBrowse from "./components/PopBrowse/PopBrowse.jsx";
-import {cardList} from "./data.js";
+import {cardList} from "./data/data.js";
 import Loader from "./components/Loader/Loader.jsx";
+import {GlobalStyled} from "./components/Global.styled.js";
 
 function App() {
     const [cards, setCard] = useState(cardList)
@@ -21,6 +22,7 @@ function App() {
 
     return (
         <>
+            <GlobalStyled />
             <div className="wrapper">
 
                 <PopUser />

@@ -5,6 +5,13 @@ export const SMain = styled.main`
     background-color: #EAEEF6;
 `
 
+export const SMainContainer = styled.div`
+    max-width: 1260px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+`
+
 export const SMainBlock = styled.div`
     width: 100%;
     margin: 0 auto;
@@ -20,7 +27,7 @@ export const SMainBlock = styled.div`
 export const SMainContent = styled.div`
     width: 100%;
     display: flex;
-    
+
     //@media screen and (max-width: 1200px) 
     //display: block;
 `

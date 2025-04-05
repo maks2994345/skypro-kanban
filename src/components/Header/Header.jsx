@@ -1,10 +1,18 @@
-import {SHeader, SHeaderBlock, SHeaderButton, SHeaderNav} from "./Header.styled.js";
-import {SContainer} from "../Global.styled.js";
+import {
+    SHeader,
+    SHeaderBlock,
+    SHeaderButton, SHeaderContainer,
+    SHeaderNav, SHeaderPopUserEmail,
+    SHeaderPopUserName,
+    SHeaderPopUserSet,
+    SHeaderUser, SPopUserButton, SPopUserInput, SPopUserSet, SPopUserSetTheme
+} from "./Header.styled.js";
+
 
 function Header (){
     return (
         <SHeader>
-            <SContainer>
+            <SHeaderContainer>
                 <SHeaderBlock>
                     <div className="header__logo _show _light">
                         <a href="" target="_self"><img src="/images/logo.png" alt="logo"/></a>
@@ -16,19 +24,21 @@ function Header (){
                         <SHeaderButton>
                             <a href="#popNewCard">Создать новую задачу</a>
                         </SHeaderButton>
-                        <a href="#user-set-target" className="header__user _hover02">Ivan Ivanov</a>
-                        <div className="header__pop-user-set pop-user-set" id="user-set-target">
-                            <p className="pop-user-set__name">Ivan Ivanov</p>
-                            <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                            <div className="pop-user-set__theme">
+                        <SHeaderUser href="#user-set-target">Ivan Ivanov</SHeaderUser>
+                        <SHeaderPopUserSet id="user-set-target">
+                            <SHeaderPopUserName>Ivan Ivanov</SHeaderPopUserName>
+                            <SHeaderPopUserEmail>ivan.ivanov@gmail.com</SHeaderPopUserEmail>
+                            <SPopUserSetTheme>
                                 <p>Темная тема</p>
-                                <input type="checkbox" className="checkbox" name="checkbox"/>
-                            </div>
-                            <button type="button" className="_hover03"><a href="#popExit">Выйти</a></button>
-                        </div>
+                                <SPopUserInput type="checkbox" name="checkbox"></SPopUserInput>
+                            </SPopUserSetTheme>
+                            <SPopUserButton>
+                                <a href="#popExit">Выйти</a>
+                            </SPopUserButton>
+                        </SHeaderPopUserSet>
                     </SHeaderNav>
                 </SHeaderBlock>
-            </SContainer>
+            </SHeaderContainer>
         </SHeader>
     )
 }

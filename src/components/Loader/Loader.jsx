@@ -1,10 +1,12 @@
+import {SLoader, SLoaderBox} from "./Loader.styled.js";
+
 function Loader() {
     return(
-        <div className="loader">
-            <div className="loader__box">
+        <SLoader>
+            <SLoaderBox>
                 <p>Идет загрзука данных...</p>
-            </div>
-        </div>
+            </SLoaderBox>
+        </SLoader>
     )
 }
 

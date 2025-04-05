@@ -1,12 +1,11 @@
 import Column from "../Column/Column.jsx";
-import {statusList} from "../../statusList.js";
-import {SMain, SMainBlock, SMainContent} from "./Main.styled.js";
-import {SContainer} from "../Global.styled.js";
+import {statusList} from "../../data/statusList.js";
+import {SMain, SMainBlock, SMainContainer, SMainContent} from "./Main.styled.js";
 
 function Main({cards}) {
     return (
         <SMain>
-            <SContainer>
+            <SMainContainer>
                 <SMainBlock>
                     <SMainContent>
 
@@ -22,7 +21,7 @@ function Main({cards}) {
                     </SMainContent>
 
                 </SMainBlock>
-            </SContainer>
+            </SMainContainer>
         </SMain>
     )
 }
