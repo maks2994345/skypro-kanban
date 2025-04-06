@@ -1,23 +1,24 @@
 import Card from "../Card/Card.jsx";
+import {SCards, SColumnTitle, SMainColumn} from "./Column.styled.js";
+
 
 function Column({cards, title}) {
     return (
         <>
-            <div className="main__column column">
-                <div className="column__title">
+            <SMainColumn>
+                <SColumnTitle>
                     <p>{title}</p>
-                </div>
-                <div className="cards">
+                </SColumnTitle>
+                <SCards>
 
                     {
                         cards.map((item) => {
-                            return <Card key={item.id} tag={item.theme} title={item.title} date={item.date}  />
+                            return <Card key={item.id} tag={item.theme} title={item.title} date={item.date}/>
                         })
                     }
 
-                </div>
-
-            </div>
+                </SCards>
+            </SMainColumn>
         </>
     )
 }

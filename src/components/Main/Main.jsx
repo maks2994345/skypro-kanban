@@ -1,13 +1,13 @@
 import Column from "../Column/Column.jsx";
-import {statusList} from "../../statusList.js";
+import {statusList} from "../../data/statusList.js";
+import {SMain, SMainBlock, SMainContainer, SMainContent} from "./Main.styled.js";
 
 function Main({cards}) {
     return (
-        <main className="main">
-            <div className="container">
-
-                <div className="main__block">
-                    <div className="main__content">
+        <SMain>
+            <SMainContainer>
+                <SMainBlock>
+                    <SMainContent>
 
                         {
                             statusList.map((item, index) => {
@@ -18,11 +18,11 @@ function Main({cards}) {
                             })
                         }
 
-                    </div>
+                    </SMainContent>
 
-                </div>
-            </div>
-        </main>
+                </SMainBlock>
+            </SMainContainer>
+        </SMain>
     )
 }
 
