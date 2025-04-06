@@ -7,9 +7,17 @@ import {
     SHeaderPopUserSet,
     SHeaderUser, SPopUserButton, SPopUserInput, SPopUserSet, SPopUserSetTheme
 } from "./Header.styled.js";
+import {useNavigate} from "react-router-dom";
+import PopNewCard from "../PopNewCard/PopNewCard.jsx";
 
 
 function Header (){
+    const navigate = useNavigate();
+
+    const handleCreateNewCard = () => {
+        navigate('/new-card-add')
+    }
+
     return (
         <SHeader>
             <SHeaderContainer>
@@ -21,8 +29,8 @@ function Header (){
                         <a href="" target="_self"><img src="/images/logo_dark.png" alt="logo"/></a>
                     </div>
                     <SHeaderNav>
-                        <SHeaderButton>
-                            <a href="#popNewCard">Создать новую задачу</a>
+                        <SHeaderButton onClick={handleCreateNewCard}>
+                            Создать новую задачу
                         </SHeaderButton>
                         <SHeaderUser href="#user-set-target">Ivan Ivanov</SHeaderUser>
                         <SHeaderPopUserSet id="user-set-target">

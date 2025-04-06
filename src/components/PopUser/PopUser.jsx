@@ -6,8 +6,20 @@ import {
     SPopExitFormGroup, SPopExitNo,
     SPopExitTitle, SPopExitYes
 } from "./PopUser.styled.js";
+import {useNavigate} from "react-router-dom";
 
 function PopUser() {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        navigate('/sign-up');
+    }
+
+    const handleOnMain = () => {
+        navigate('/');
+    }
+
     return(
         <>
             <SPopExit id="popExit">
@@ -18,11 +30,11 @@ function PopUser() {
                         </SPopExitTitle>
                         <SPopExitForm id="formExit">
                             <SPopExitFormGroup>
-                                <SPopExitYes id="exitYes">
-                                    <a href="modal/signin.html">Да, выйти</a>
+                                <SPopExitYes id="exitYes" onClick={handleLogout}>
+                                    Да, выйти
                                 </SPopExitYes>
-                                <SPopExitNo id="exitNo">
-                                    <a href="main.html">Нет, остаться</a>
+                                <SPopExitNo id="exitNo" onClick={handleOnMain}>
+                                    Нет, остаться
                                 </SPopExitNo>
                             </SPopExitFormGroup>
                         </SPopExitForm>
