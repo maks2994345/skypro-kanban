@@ -1,8 +1,8 @@
 import AuthForm from "../AuthForm/AuthForm.jsx";
 
-function SignUp() {
+function SignUp({isSignUp}) {
     return(
-        <AuthForm />
+        <AuthForm isSignUp={isSignUp} />
     )
 }
 

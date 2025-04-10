@@ -1,8 +1,8 @@
 import PopUser from "../components/PopUser/PopUser.jsx";
 
-function UserModal () {
+function UserModal ({setIsAuth}) {
     return(
-        <PopUser />
+        <PopUser setIsAuth={setIsAuth} />
     )
 }
 

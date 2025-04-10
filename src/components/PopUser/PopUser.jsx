@@ -8,11 +8,14 @@ import {
 } from "./PopUser.styled.js";
 import {useNavigate} from "react-router-dom";
 
-function PopUser() {
+function PopUser({setIsAuth}) {
+
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        navigate('/sign-up');
+    const handleLogout = (e) => {
+        e.preventDefault();
+        setIsAuth(false);
+        navigate('/sign-in')
     }
 
     const handleOnMain = () => {

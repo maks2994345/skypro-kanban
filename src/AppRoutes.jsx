@@ -10,8 +10,11 @@ import NewCardModal from "./pages/NewCardModal.jsx";
 import BrowseModal from "./pages/BrowseModal.jsx";
 import UserModal from "./pages/UserModal.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 function AppRoutes() {
+    const [isAuth, setIsAuth] = useState(false);
+
     const [cards, setCard] = useState(cardList)
 
     const [isLoader, setIsLoader] = useState(true);
@@ -23,16 +26,18 @@ function AppRoutes() {
     }, [])
 
     return (
-            <Routes>
+        <Routes>
+            <Route element={<PrivateRoute isAuth={isAuth} />}>
                 <Route path="/" element={<MainPage isLoader={isLoader} cards={cards}/>}>
                     <Route path="new-card/add" element={<NewCardModal/>}/>
-                    <Route path="card/:id" element={<BrowseModal cards={cards}/>} />
-                    <Route path="sign-out" element={<UserModal/>} />
+                    <Route path="card/:id" element={<BrowseModal cards={cards}/>}/>
+                    <Route path="sign-out" element={<UserModal setIsAuth={setIsAuth}/>}/>
                 </Route>
-                <Route path="/sign-in" element={<SignInPage/>}/>
-                <Route path="/sign-up" element={<SignUpPage/>}/>
-                <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
+            </Route>
+            <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth}/>}/>
+            <Route path="/sign-up" element={<SignUpPage/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>
+        </Routes>
 
     );
 }
