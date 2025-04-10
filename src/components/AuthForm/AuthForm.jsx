@@ -47,7 +47,7 @@ function AuthForm({setIsAuth, isSignUp}) {
                                         Зарегистрироваться
                                     </SModalButton>
                                     <SModalFormGroup>
-                                        <p>Уже есть аккаунт? <Link to='/sign-in'>Войдите здесь</Link></p>
+                                        <p>Уже есть аккаунт? <a onClick={handleSignIn}>Войдите здесь</a></p>
                                     </SModalFormGroup>
                                 </SModalForm>
                             </SModalBlock>
