@@ -1,31 +1,25 @@
 import Header from "../components/Header/Header.jsx";
 import Main from "../components/Main/Main.jsx";
-import PopUser from "../components/PopUser/PopUser.jsx";
-import PopNewCard from "../components/PopNewCard/PopNewCard.jsx";
-import PopBrowse from "../components/PopBrowse/PopBrowse.jsx";
 import Loader from "../components/Loader/Loader.jsx";
 import {GlobalStyled} from "../components/Global.styled.js";
+import {Outlet} from "react-router-dom";
 
-function App({isLoader, cards}) {
+function MainPage({isLoader, cards}) {
 
     return (
         <>
             <GlobalStyled />
             <div className="wrapper">
 
-                <PopUser />
-
-                <PopNewCard />
-
-                <PopBrowse />
-
-                <Header />
+                <Header/>
                 {
                     isLoader ?
-                        <Loader />
+                        <Loader/>
                         :
-                        <Main cards={cards} />
+                        <Main cards={cards}/>
                 }
+
+                <Outlet />
 
             </div>
 
@@ -34,4 +28,4 @@ function App({isLoader, cards}) {
     )
 }
 
-export default App
+export default MainPage

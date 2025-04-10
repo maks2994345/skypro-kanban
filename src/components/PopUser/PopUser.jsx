@@ -9,7 +9,6 @@ import {
 import {useNavigate} from "react-router-dom";
 
 function PopUser() {
-
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -20,20 +19,21 @@ function PopUser() {
         navigate('/');
     }
 
+
     return(
         <>
-            <SPopExit id="popExit">
+            <SPopExit>
                 <SPopExitContainer>
                     <SPopExitBlock>
                         <SPopExitTitle>
                             <h2>Выйти из аккаунта?</h2>
                         </SPopExitTitle>
-                        <SPopExitForm id="formExit">
+                        <SPopExitForm>
                             <SPopExitFormGroup>
-                                <SPopExitYes id="exitYes" onClick={handleLogout}>
+                                <SPopExitYes onClick={handleLogout}>
                                     Да, выйти
                                 </SPopExitYes>
-                                <SPopExitNo id="exitNo" onClick={handleOnMain}>
+                                <SPopExitNo onClick={handleOnMain}>
                                     Нет, остаться
                                 </SPopExitNo>
                             </SPopExitFormGroup>

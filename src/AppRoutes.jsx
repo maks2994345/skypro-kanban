@@ -1,15 +1,15 @@
 import {useEffect, useState} from 'react'
 import './App.css'
 import {cardList} from "./data/data.js";
-import {Route, Router, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import MainPage from "./pages/MainPage.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
-import {SPopExit} from "./components/PopUser/PopUser.styled.js";
-import PopNewCard from "./components/PopNewCard/PopNewCard.jsx";
-import Card from "./components/Card/Card.jsx";
-import PopBrowse from "./components/PopBrowse/PopBrowse.jsx";
-import Header from "./components/Header/Header.jsx";
+import PopUser from "./components/PopUser/PopUser.jsx";
+import NewCardModal from "./pages/NewCardModal.jsx";
+import BrowseModal from "./pages/BrowseModal.jsx";
+import UserModal from "./pages/UserModal.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 function AppRoutes() {
     const [cards, setCard] = useState(cardList)
@@ -24,12 +24,14 @@ function AppRoutes() {
 
     return (
             <Routes>
-                <Route path="/" element={<MainPage isLoader={isLoader} cards={cards}/>}/>
-                <Route path="/new-card/add" element={<PopNewCard/>}/>
+                <Route path="/" element={<MainPage isLoader={isLoader} cards={cards}/>}>
+                    <Route path="new-card/add" element={<NewCardModal/>}/>
+                    <Route path="card/:id" element={<BrowseModal cards={cards}/>} />
+                    <Route path="sign-out" element={<UserModal/>} />
+                </Route>
                 <Route path="/sign-in" element={<SignInPage/>}/>
                 <Route path="/sign-up" element={<SignUpPage/>}/>
-                <Route path="/sign-out" element={<SPopExit/>}/>
-                <Route path="/card:id" element={<PopBrowse/>} />
+                <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
 
     );

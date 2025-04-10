@@ -1,12 +1,21 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Calendar from "../Calendar/Calendar.jsx";
 
-function PopBrowse() {
+function PopBrowse({cards}) {
+
     const { id } = useParams();
+
+const card = cards.find((card) => card.id === id);
+
+const navigate = useNavigate();
+
+    const handleClose = () => {
+        navigate('/')
+    }
 
     return(
         <>
-            <div className="pop-browse" id="popBrowse">
+            <div className="pop-browse">
                 <div className="pop-browse__container">
                     <div className="pop-browse__block">
                         <div className="pop-browse__content">
@@ -40,8 +49,8 @@ function PopBrowse() {
                                 <form className="pop-browse__form form-browse" id="formBrowseCard" action="#">
                                     <div className="form-browse__block">
                                         <label htmlFor="textArea01" className="subttl">Описание задачи</label>
-                                        <textarea className="form-browse__area" name="text" id="textArea01" readOnly
-                                                  placeholder="Введите описание задачи..."></textarea>
+                                        <textarea className="form-browse__area" name="text" id="textArea01" readOnly placeholder="Введите описание задачи...">
+                                        </textarea>
                                     </div>
                                 </form>
                                 <Calendar />
@@ -54,28 +63,33 @@ function PopBrowse() {
                             </div>
                             <div className="pop-browse__btn-browse ">
                                 <div className="btn-group">
-                                    <button className="btn-browse__edit _btn-bor _hover03"><a href="#">Редактировать
-                                        задачу</a></button>
-                                    <button className="btn-browse__delete _btn-bor _hover03"><a href="#">Удалить
-                                        задачу</a></button>
+                                    <button className="btn-browse__edit _btn-bor _hover03">
+                                        <a href="#">Редактировать задачу</a>
+                                    </button>
+                                    <button className="btn-browse__delete _btn-bor _hover03">
+                                        <a href="#">Удалить задачу</a>
+                                    </button>
                                 </div>
-                                <button className="btn-browse__close _btn-bg _hover01"><a href="#">Закрыть</a>
+                                <button className="btn-browse__close _btn-bg _hover01" onClick={handleClose}>
+                                    Закрыть
                                 </button>
                             </div>
                             <div className="pop-browse__btn-edit _hide">
                                 <div className="btn-group">
-                                    <button className="btn-edit__edit _btn-bg _hover01"><a href="#">Сохранить</a>
+                                    <button className="btn-edit__edit _btn-bg _hover01">
+                                        <a href="#">Сохранить</a>
                                     </button>
-                                    <button className="btn-edit__edit _btn-bor _hover03"><a href="#">Отменить</a>
+                                    <button className="btn-edit__edit _btn-bor _hover03">
+                                        <a href="#">Отменить</a>
                                     </button>
-                                    <button className="btn-edit__delete _btn-bor _hover03" id="btnDelete"><a
-                                        href="#">Удалить
-                                        задачу</a></button>
+                                    <button className="btn-edit__delete _btn-bor _hover03" id="btnDelete">
+                                        <a href="#">Удалить задачу</a>
+                                    </button>
                                 </div>
-                                <button className="btn-edit__close _btn-bg _hover01"><a href="#">Закрыть</a>
+                                <button className="btn-edit__close _btn-bg _hover01">
+                                    Закрыть
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>
