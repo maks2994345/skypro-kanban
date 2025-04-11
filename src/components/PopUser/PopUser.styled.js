@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SPopExit = styled.div`
-    display: none;
+   display: block;
     width: 100%;
     height: 100%;
     min-width: 320px;
@@ -120,7 +120,7 @@ export const SPopExitNo = styled.button`
     line-height: 21px;
     font-weight: 500;
     letter-spacing: -0.14px;
-    color: #FFFFFF;
+    color: #565EEF;
 
     &:hover {
         background-color: #33399b;
@@ -130,16 +130,6 @@ export const SPopExitNo = styled.button`
     &:hover a {
         color: #FFFFFF;
     }
-
-    a {
-        width: 100%;
-        height: 100%;
-        color: #565EEF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
 
     //@media only screen and (max-width: 375px)
     //width: 100%;

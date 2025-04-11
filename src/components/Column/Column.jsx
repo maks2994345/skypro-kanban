@@ -13,7 +13,7 @@ function Column({cards, title}) {
 
                     {
                         cards.map((item) => {
-                            return <Card key={item.id} tag={item.theme} title={item.title} date={item.date}/>
+                            return <Card key={item.id} id={item.id} tag={item.theme} title={item.title} date={item.date}/>
                         })
                     }
 

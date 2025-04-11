@@ -6,23 +6,38 @@ import {
     SPopExitFormGroup, SPopExitNo,
     SPopExitTitle, SPopExitYes
 } from "./PopUser.styled.js";
+import {useNavigate} from "react-router-dom";
 
-function PopUser() {
+function PopUser({setIsAuth}) {
+
+    const navigate = useNavigate();
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        setIsAuth(false);
+        navigate('/sign-in')
+    }
+
+    const handleOnMain = () => {
+        navigate('/');
+    }
+
+
     return(
         <>
-            <SPopExit id="popExit">
+            <SPopExit>
                 <SPopExitContainer>
                     <SPopExitBlock>
                         <SPopExitTitle>
                             <h2>Выйти из аккаунта?</h2>
                         </SPopExitTitle>
-                        <SPopExitForm id="formExit">
+                        <SPopExitForm>
                             <SPopExitFormGroup>
-                                <SPopExitYes id="exitYes">
-                                    <a href="modal/signin.html">Да, выйти</a>
+                                <SPopExitYes onClick={handleLogout}>
+                                    Да, выйти
                                 </SPopExitYes>
-                                <SPopExitNo id="exitNo">
-                                    <a href="main.html">Нет, остаться</a>
+                                <SPopExitNo onClick={handleOnMain}>
+                                    Нет, остаться
                                 </SPopExitNo>
                             </SPopExitFormGroup>
                         </SPopExitForm>
