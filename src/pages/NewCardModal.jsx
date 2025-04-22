@@ -1,9 +1,7 @@
 import PopNewCard from "../components/PopNewCard/PopNewCard.jsx";
 
-function NewCardModal() {
-    return(
-        <PopNewCard />
-    )
-}
+const NewCardModal = ({addNewCard}) => (
+        <PopNewCard addNewCard={addNewCard} />
+)
 
 export default NewCardModal;

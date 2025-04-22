@@ -4,19 +4,86 @@ import {
     SModalBlock,
     SModalButton,
     SModalForm, SModalFormGroup,
-    SModalInput,
     SModalTitle
 } from "./AuthForm.styled.js";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {signIn, signUp} from "../../services/auth.js";
+import BaseInput from "../BaseInput.jsx";
 
 function AuthForm({setIsAuth, isSignUp}) {
 
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const [formData, setFormData] = useState({
+        name: "",
+        login: "",
+        password: "",
+    });
+
+    const [errors, setErrors] = useState({
+        name: "",
+        login: "",
+        password: "",
+    });
+
+    const [error, setError] = useState("")
+
+    const validateForm = () => {
+        const newErrors = {name: "", login: "", password: ""};
+        let isValid = true
+
+        if (isSignUp && !formData.name.trim()) {
+            newErrors.name = true;
+            setError("Заполните все поля!");
+            isValid = false
+        }
+
+        if (!formData.login.trim()) {
+            newErrors.login = true
+            setError("Заполните все поля!")
+            isValid = false
+        }
+
+        if (!formData.password.trim()) {
+            newErrors.password = true;
+            setError("Заполните все поля!")
+            isValid = false
+        }
+
+        setErrors(newErrors)
+        return isValid
+    }
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        })
+        setErrors({...errors, [name]: false})
+        setError("")
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsAuth(true)
-        navigate('/');
+        if (!validateForm()) {
+            return
+        }
+
+        try {
+            const data = !isSignUp
+                ? await signIn({login: formData.login, password: formData.password})
+                : await signUp(formData)
+
+            if (data) {
+                setIsAuth(true)
+                localStorage.setItem("userInfo", JSON.stringify(data))
+                navigate("/")
+            }
+        } catch (err) {
+            setError(err.message || "Что-то пошло не так.")
+        }
     }
 
     const handleSignUp = () => {
@@ -34,15 +101,40 @@ function AuthForm({setIsAuth, isSignUp}) {
                     <SContainerSignIn>
                         <SModal>
                             <SModalBlock>
-                                <SModalForm>
+                                <SModalForm onSubmit={handleSubmit}>
                                     <SModalTitle>
-                                    <h2>Регистрация</h2>
-                                </SModalTitle>
-                                    <SModalInput type="text" name="first-name"
-                                           id="first-name" placeholder="Имя"/>
-                                    <SModalInput type="text" name="login" id="formlogin" placeholder="Эл. почта"/>
-                                    <SModalInput type="password" name="password" id="formpassword"
-                                                 placeholder="Пароль"/>
+                                        <h2>Регистрация</h2>
+                                    </SModalTitle>
+                                    <BaseInput
+                                        error={errors.name}
+                                        type="text"
+                                        name="name"
+                                        id="formname"
+                                        placeholder="Имя"
+                                        value={formData.name}
+                                        onChange={handleChange}
+
+                                    />
+                                    <BaseInput
+                                        error={errors.login}
+                                        type="text"
+                                        name="login"
+                                        id="formlogin"
+                                        placeholder="Эл.почта"
+                                        value={formData.login}
+                                        onChange={handleChange}
+                                    />
+
+                                    <BaseInput
+                                        error={errors.password}
+                                        type="password"
+                                        name="password"
+                                        id="formpassword"
+                                        placeholder="Пароль"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                    />
+                                    {error && <p style={{color: "red"}}>{error}</p>}
                                     <SModalButton>
                                         Зарегистрироваться
                                     </SModalButton>
@@ -62,11 +154,28 @@ function AuthForm({setIsAuth, isSignUp}) {
                                 <SModalTitle>
                                     <h2>Вход</h2>
                                 </SModalTitle>
-                                <SModalForm>
-                                    <SModalInput type="text" name="login" id="formlogin" placeholder="Эл. почта"/>
-                                    <SModalInput type="password" name="password" id="formpassword"
-                                                 placeholder="Пароль"/>
-                                    <SModalButton id="btnEnter" onClick={handleLogin}>
+                                <SModalForm onSubmit={handleSubmit}>
+                                    <BaseInput
+                                        error={errors.login}
+                                        type="text"
+                                        name="login"
+                                        id="formlogin"
+                                        placeholder="Эл.почта"
+                                        value={formData.login}
+                                        onChange={handleChange}
+                                    />
+
+                                    <BaseInput
+                                        error={errors.password}
+                                        type="password"
+                                        name="password"
+                                        id="formpassword"
+                                        placeholder="Пароль"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                    />
+                                    {error && <p style={{color: "red"}}>{error}</p>}
+                                    <SModalButton>
                                         Войти
                                     </SModalButton>
                                     <SModalFormGroup>
