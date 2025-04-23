@@ -9,7 +9,7 @@ import BrowseModal from "./pages/BrowseModal.jsx";
 import UserModal from "./pages/UserModal.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
-import {fetchCard, postCards} from "./services/api.js";
+import {fetchCard} from "./services/api.js";
 
 function AppRoutes() {
     const [isAuth, setIsAuth] = useState(false);
@@ -53,7 +53,7 @@ function AppRoutes() {
                 </Route>
             </Route>
             <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth}/>}/>
-            <Route path="/sign-up" element={<SignUpPage/>}/>
+            <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth}/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
 

@@ -1,12 +1,12 @@
 import SignUp from "../components/SignUp/SignUp.jsx";
 import {useState} from "react";
 
-function SignUpPage () {
+function SignUpPage ({setIsAuth}) {
 
     const [isSignUp, setIsSignUp] = useState(true);
 
     return(
-        <SignUp isSignUp={isSignUp} />
+        <SignUp isSignUp={isSignUp} setIsAuth={setIsAuth} />
     )
 }
 
