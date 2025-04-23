@@ -1,11 +1,9 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Calendar from "../Calendar/Calendar.jsx";
 
-function PopBrowse({cards}) {
+function PopBrowse() {
 
     const { id } = useParams();
-
-const card = cards.find((card) => card.id === id);
 
 const navigate = useNavigate();
 
