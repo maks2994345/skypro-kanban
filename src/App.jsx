@@ -1,9 +1,12 @@
 import './App.css'
 import AppRoutes from "./AppRoutes.jsx";
+import AuthProvider from "./context/AuthProvider.jsx";
 
 function App() {
     return (
-        <AppRoutes />
+        <AuthProvider>
+            <AppRoutes />
+        </AuthProvider>
     );
 }
 

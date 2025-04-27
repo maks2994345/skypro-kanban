@@ -7,11 +7,14 @@ import {
     SModalTitle
 } from "./AuthForm.styled.js";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {signIn, signUp} from "../../services/auth.js";
 import BaseInput from "../BaseInput.jsx";
+import {AuthContext} from "../../context/AuthContext.js";
 
-function AuthForm({setIsAuth, isSignUp}) {
+function AuthForm({isSignUp}) {
+
+    const {updateUserInfo} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -77,8 +80,7 @@ function AuthForm({setIsAuth, isSignUp}) {
                 : await signUp(formData)
 
             if (data) {
-                setIsAuth(true)
-                localStorage.setItem("userInfo", JSON.stringify(data))
+                updateUserInfo(data)
                 navigate("/")
             }
         } catch (err) {
