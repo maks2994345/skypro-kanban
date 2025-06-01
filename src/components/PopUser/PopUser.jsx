@@ -7,14 +7,18 @@ import {
     SPopExitTitle, SPopExitYes
 } from "./PopUser.styled.js";
 import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.js";
 
-function PopUser({setIsAuth}) {
+function PopUser() {
 
     const navigate = useNavigate();
 
+    const {logout} = useContext(AuthContext);
+
     const handleLogout = (e) => {
         e.preventDefault();
-        setIsAuth(false);
+        logout()
         navigate('/sign-in')
     }
 

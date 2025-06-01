@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react'
 import './App.css'
-import {data, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import MainPage from "./pages/MainPage.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
@@ -9,10 +9,9 @@ import BrowseModal from "./pages/BrowseModal.jsx";
 import UserModal from "./pages/UserModal.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
-import {fetchCard} from "./services/api.js";
+import {deleteCard, fetchCard} from "./services/api.js";
 
 function AppRoutes() {
-    const [isAuth, setIsAuth] = useState(false);
 
     const [cards, setCard] = useState([])
 
@@ -42,18 +41,22 @@ function AppRoutes() {
         setCard((prevCard) => [...prevCard, newCard])
     }
 
+    const editCard = (editedCard) => {
+        setCard(editedCard)
+    }
+
 
     return (
         <Routes>
-            <Route element={<PrivateRoute isAuth={isAuth}/>}>
+            <Route element={<PrivateRoute/>}>
                 <Route path="/" element={<MainPage isLoader={isLoader} cards={cards}/>}>
                     <Route path="new-card/add" element={<NewCardModal addNewCard={addNewCard}/>}/>
-                    <Route path="card/:id" element={<BrowseModal cards={cards}/>}/>
-                    <Route path="sign-out" element={<UserModal setIsAuth={setIsAuth}/>}/>
+                    <Route path="card/:id" element={<BrowseModal editCard={editCard} cards={cards}/>}/>
+                    <Route path="sign-out" element={<UserModal />}/>
                 </Route>
             </Route>
-            <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth}/>}/>
-            <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth}/>}/>
+            <Route path="/sign-in" element={<SignInPage />}/>
+            <Route path="/sign-up" element={<SignUpPage />}/>
             <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
 

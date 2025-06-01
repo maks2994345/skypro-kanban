@@ -96,7 +96,7 @@ export const SHeaderUser = styled.a`
 `
 
 export const SHeaderPopUserSet = styled.div`
-    display: none;
+    display: block;
     position: absolute;
     top: 61px;
     right: 0;

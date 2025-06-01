@@ -1,43 +1,61 @@
 import axios from "axios";
 
 const API_URL = 'https://wedev-api.sky.pro/api/kanban'
-export async function fetchCard({token}){
+
+export async function fetchCard({token}) {
     try {
         const data = await axios.get(API_URL, {
-            headers:{
-               Authorization: `Bearer ` + token,
+            headers: {
+                Authorization: `Bearer ` + token,
             },
 
         })
-        return data.data.cards
+        return data.data.tasks
     } catch (error) {
         throw new Error(error.message)
     }
 }
 
-export async function postCards({token, card}){
-    try{
+export async function postCards({token, card}) {
+    try {
         const data = await axios.post(API_URL, card, {
-            headers:{
+            headers: {
                 Authorization: `Bearer ` + token,
+                'Content-Type': 'text/html',
             },
 
         })
-        return data.data.cards
+
+        return data.data.tasks
     } catch (error) {
         throw new Error(error.message)
     }
 }
 
-export async function editCard({token, id, card}){
-    try{
+export async function editCard({token, id, card}) {
+    try {
         const data = await axios.put(API_URL + id, card, {
-            headers:{
+            headers: {
                 Authorization: `Bearer ` + token,
+                'Content-Type': 'text/html',
+            },
+
+        })
+        return data.tasks
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+export async function deleteCard({token, id}) {
+    try{
+        const data = await axios.delete(`${API_URL}${id}`, {
+            headers: {
+                Authorization: `Bearer  + ${token}`,
                 'Content-Type': 'text/html',
             }
         })
-        return data.data
+        return data.tasks
     } catch (error) {
         throw new Error(error.message)
     }

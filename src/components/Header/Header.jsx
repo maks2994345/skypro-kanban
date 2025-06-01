@@ -8,11 +8,20 @@ import {
     SHeaderUser, SPopUserButton, SPopUserInput, SPopUserSetTheme
 } from "./Header.styled.js";
 import {useNavigate} from "react-router-dom";
-
-
+import {useContext, useState} from "react";
+import {AuthContext} from "../../context/AuthContext.js";
 
 function Header (){
+
+    const { user } = useContext(AuthContext);
+
     const navigate = useNavigate();
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleUserMenu = () => {
+    setIsOpen(prev => !prev);
+};
 
     const handleCreateNewCard = () => {
         navigate('/new-card/add')
@@ -40,10 +49,11 @@ function Header (){
                         <SHeaderButton onClick={handleCreateNewCard}>
                              Создать новую задачу
                         </SHeaderButton>
-                        <SHeaderUser href="#user-set-target">Ivan Ivanov</SHeaderUser>
-                        <SHeaderPopUserSet id="user-set-target">
-                            <SHeaderPopUserName>Ivan Ivanov</SHeaderPopUserName>
-                            <SHeaderPopUserEmail>ivan.ivanov@gmail.com</SHeaderPopUserEmail>
+                        <SHeaderUser onClick={toggleUserMenu}>{user.name}</SHeaderUser>
+                        {isOpen && (
+                            <SHeaderPopUserSet>
+                            <SHeaderPopUserName>{user.name}</SHeaderPopUserName>
+                            <SHeaderPopUserEmail>{user.login}</SHeaderPopUserEmail>
                             <SPopUserSetTheme>
                                 <p>Темная тема</p>
                                 <SPopUserInput type="checkbox" name="checkbox"></SPopUserInput>
@@ -52,6 +62,7 @@ function Header (){
                                 Выйти
                             </SPopUserButton>
                         </SHeaderPopUserSet>
+                        )}
                     </SHeaderNav>
                 </SHeaderBlock>
             </SHeaderContainer>

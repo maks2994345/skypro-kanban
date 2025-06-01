@@ -1,26 +1,42 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Calendar from "../Calendar/Calendar.jsx";
+import {useEffect, useState} from "react";
 
-function PopBrowse() {
+function PopBrowse({editCard, cards}) {
+
+    const navigate = useNavigate();
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const { id } = useParams();
 
-const navigate = useNavigate();
+    const card = cards.find(item => item._id === id);
 
     const handleClose = () => {
         navigate('/')
     }
 
-    return(
+      const toggleChangeMenu = () => {
+        setIsOpen(prev => !prev);
+    }
+
+     useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, []);
+
+    return (
         <>
             <div className="pop-browse">
                 <div className="pop-browse__container">
                     <div className="pop-browse__block">
                         <div className="pop-browse__content">
                             <div className="pop-browse__top-block">
-                                <h3 className="pop-browse__ttl">Название задачи</h3>
+                                <h3 className="pop-browse__ttl">{card.title}</h3>
                                 <div className="categories__theme theme-top _orange _active-category">
-                                    <p className="_orange">Web Design</p>
+                                    <p className="">{card.topic}</p>
                                 </div>
                             </div>
                             <div className="pop-browse__status status">
@@ -30,7 +46,7 @@ const navigate = useNavigate();
                                         <p>Без статуса</p>
                                     </div>
                                     <div className="status__theme _gray">
-                                        <p className="_gray">Нужно сделать</p>
+                                        <p className="_gray">{card.status}</p>
                                     </div>
                                     <div className="status__theme _hide">
                                         <p>В работе</p>
@@ -47,11 +63,12 @@ const navigate = useNavigate();
                                 <form className="pop-browse__form form-browse" id="formBrowseCard" action="#">
                                     <div className="form-browse__block">
                                         <label htmlFor="textArea01" className="subttl">Описание задачи</label>
-                                        <textarea className="form-browse__area" name="text" id="textArea01" readOnly placeholder="Введите описание задачи...">
+                                        <textarea className="form-browse__area" name="text" id="textArea01" readOnly
+                                                  placeholder="Введите описание задачи...">
                                         </textarea>
                                     </div>
                                 </form>
-                                <Calendar />
+                                <Calendar/>
                             </div>
                             <div className="theme-down__categories theme-down">
                                 <p className="categories__p subttl">Категория</p>
@@ -61,17 +78,18 @@ const navigate = useNavigate();
                             </div>
                             <div className="pop-browse__btn-browse ">
                                 <div className="btn-group">
-                                    <button className="btn-browse__edit _btn-bor _hover03">
-                                        <a href="#">Редактировать задачу</a>
+                                    <button onClick={toggleChangeMenu} className="btn-browse__edit _btn-bor _hover03">
+                                        Редактировать задачу
                                     </button>
                                     <button className="btn-browse__delete _btn-bor _hover03">
-                                        <a href="#">Удалить задачу</a>
+                                        Удалить задачу
                                     </button>
                                 </div>
-                                <button className="btn-browse__close _btn-bg _hover01" onClick={handleClose}>
+                                <button className="btn-browse__close _btn-bg _hover01" onClick={handleClose} >
                                     Закрыть
                                 </button>
                             </div>
+                            {isOpen && (
                             <div className="pop-browse__btn-edit _hide">
                                 <div className="btn-group">
                                     <button className="btn-edit__edit _btn-bg _hover01">
@@ -80,14 +98,15 @@ const navigate = useNavigate();
                                     <button className="btn-edit__edit _btn-bor _hover03">
                                         <a href="#">Отменить</a>
                                     </button>
-                                    <button className="btn-edit__delete _btn-bor _hover03" id="btnDelete">
-                                        <a href="#">Удалить задачу</a>
+                                    <button className="btn-edit__delete _btn-bor _hover03">
+                                        Удалить задачу
                                     </button>
                                 </div>
                                 <button className="btn-edit__close _btn-bg _hover01">
                                     Закрыть
                                 </button>
                             </div>
+                                )}
                         </div>
                     </div>
                 </div>
