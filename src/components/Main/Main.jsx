@@ -2,7 +2,7 @@ import Column from "../Column/Column.jsx";
 import {statusList} from "../../data/statusList.js";
 import {SMain, SMainBlock, SMainContainer, SMainContent} from "./Main.styled.js";
 
-function Main({cards}) {
+function Main({isLoader, cards}) {
     return (
         <SMain>
             <SMainContainer>
@@ -14,7 +14,7 @@ function Main({cards}) {
 
                                 const filteredList = cards.filter((card) => card.status === item)
 
-                                return <Column title={item} key={index} cards={filteredList} />
+                                return <Column isLoader={isLoader} title={item} key={index} cards={filteredList} />
                             })
                         }
 

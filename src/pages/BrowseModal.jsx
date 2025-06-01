@@ -1,9 +1,12 @@
 import PopBrowse from "../components/PopBrowse/PopBrowse.jsx";
 
-function BrowseModal({cards}) {
+function BrowseModal({editCard, cards}) {
+
+
     return (
-        <PopBrowse cards={cards}/>
+        <PopBrowse editCard={editCard} cards={cards}/>
     )
+
 
 }
 

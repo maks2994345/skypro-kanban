@@ -1,6 +1,6 @@
 import Calendar from "../Calendar/Calendar.jsx";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {postCards} from "../../services/api.js";
 
 function PopNewCard({addNewCard}) {
@@ -19,12 +19,17 @@ function PopNewCard({addNewCard}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let color = "gray"
+        if (topic === "Web Design") color = "orange"
+        if (topic === "Research") color = "green"
+        if (topic === "Copywriting") color = "purple"
+
         const newCard = {
             title: title,
-            topic: topic,
             status: 'Без статуса',
             description: description,
             date: new Date().toISOString(),
+            color: color
         };
 
         try {
@@ -41,6 +46,13 @@ function PopNewCard({addNewCard}) {
             err.message;
         }
     }
+
+     useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, []);
 
     return (
         <>
@@ -72,20 +84,24 @@ function PopNewCard({addNewCard}) {
                             <div className="pop-new-card__categories categories">
                                 <p className="categories__p subttl">Категория</p>
                                 <div className="categories__themes">
-                                    <div className="categories__theme _orange _active-category">
+                                    <div
+                                        className={`categories__theme _orange ${topic === "Web Design" ? "_active-category" : ""}`}
+                                        onClick={() => setTopic("Web Design")}>
                                         <p className="_orange">Web Design</p>
                                     </div>
-                                    <div className="categories__theme _green">
+                                    <div
+                                        className={`categories__theme _green ${topic === "Research" ? "_active-category" : ""}`}
+                                        onClick={() => setTopic("Research")}>
                                         <p className="_green">Research</p>
                                     </div>
-                                    <div className="categories__theme _purple">
+                                    <div
+                                        className={`categories__theme _purple ${topic === "Copywriting" ? "_active-category" : ""}`}
+                                        onClick={() => setTopic("Copywriting")}>
                                         <p className="_purple">Copywriting</p>
                                     </div>
                                 </div>
                             </div>
-                            <button onClick={handleSubmit} className="form-new__create _hover01" id="btnCreate">Создать
-                                задачу
-                            </button>
+                            <button onClick={handleSubmit} className="form-new__create _hover01" id="btnCreate">Создать задачу</button>
                         </div>
                     </div>
                 </div>

@@ -8,10 +8,9 @@ import {
     SCardTheme,
     SCardTitle, STopicText
 } from "./Card.styled.js";
-import {useNavigate, useParams} from "react-router-dom";
-import PopBrowse from "../PopBrowse/PopBrowse.jsx";
+import {useNavigate} from "react-router-dom";
 
-function Card({title, tag, date, id}) {
+function Card({title, topic, date, id}) {
 
     const navigate = useNavigate();
 
@@ -24,8 +23,8 @@ function Card({title, tag, date, id}) {
             <SCardsItem>
                 <SCardsCard>
                     <SCardGroup>
-                        <SCardTheme $topicColor={tag}>
-                            <STopicText>{tag}</STopicText>
+                        <SCardTheme $topicColor={topic}>
+                            <STopicText>{topic}</STopicText>
                         </SCardTheme>
                         <a>
                             <SCardButton onClick={handleCardInformation}>
@@ -36,9 +35,7 @@ function Card({title, tag, date, id}) {
                         </a>
                     </SCardGroup>
                     <SCardContent>
-                        <a href="" target="_blank">
                             <SCardTitle>{title}</SCardTitle>
-                        </a>
                         <SCardDate>
                             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13"
                                  fill="none">
